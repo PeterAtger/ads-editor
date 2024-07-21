@@ -1,13 +1,9 @@
 {
     "eslint.workingDirectories": [
         "apps/web",
-        "apps/generator",
-        "packages/query-builder",
         "packages/logger",
-        "packages/database",
         "packages/utils",
-        "packages/service-connectors",
-        "packages/tiny-interpreter"
+        "packages/ui"
     ],
     "search.exclude": {
         "**/dist": true,

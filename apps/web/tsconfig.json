@@ -21,7 +21,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "lib/**/**/*.ts",
-    "lib/**/**/*.jsx"
+    "lib/**/**/*.jsx",
+    "src/env.js"
   ],
   "exclude": [
     "node_modules"
