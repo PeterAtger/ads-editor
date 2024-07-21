@@ -8,6 +8,15 @@
   "peerDependencies": {
     "react": "^18"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "tailwindcss -i ./globals.css -o ./dist/index.css --watch",
+    "build": "tailwindcss -i ./globals.css -o ./dist/index.css",
+    "lint": "eslint ./",
+    "test": "jest --watch-all --verbose"
+  },
   "devDependencies": {
     "@atger/eslint-config": "*",
     "@atger/typescript-config": "*",
