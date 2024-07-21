@@ -1,0 +1,17 @@
+{
+    "eslint.workingDirectories": [
+        "apps/web",
+        "apps/generator",
+        "packages/query-builder",
+        "packages/logger",
+        "packages/database",
+        "packages/utils",
+        "packages/service-connectors",
+        "packages/tiny-interpreter"
+    ],
+    "search.exclude": {
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/.next": true,
+    }
+}
