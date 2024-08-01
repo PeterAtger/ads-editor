@@ -39,7 +39,7 @@ export default function NavLinks() {
           Create a new episode
         </Button>
         <Select>
-          <SelectTrigger className="w-full h-12">
+          <SelectTrigger className="w-full h-12 bg-zinc-50">
             <SelectValue placeholder="Select Video" />
           </SelectTrigger>
           <SelectContent>
