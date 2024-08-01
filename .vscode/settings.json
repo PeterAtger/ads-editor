@@ -3,7 +3,8 @@
         "apps/web",
         "packages/logger",
         "packages/utils",
-        "packages/ui"
+        "packages/ui",
+        "packages/database"
     ],
     "search.exclude": {
         "**/dist": true,

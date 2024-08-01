@@ -12,7 +12,7 @@ import NavLinks from '../navlinks';
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 flex h-16 items-center justify-between w-full gap-4 border-b bg-background px-8 md:px-4 bg-zinc-50">
+    <header className="fixed top-0 z-50 flex h-16 items-center justify-between w-full gap-4 border-b bg-background px-8 md:px-4 bg-zinc-50">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
           href="/"
@@ -27,7 +27,7 @@ export default function Navbar() {
           <Button
             variant="outline"
             size="icon"
-            className="shrink-0 sm:hidden"
+            className="shrink-0 md:!hidden"
           >
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle navigation menu</span>
