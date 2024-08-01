@@ -2,11 +2,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@repo/ui';
 import { Breadcrumbs } from '@/components/breadcrumbs';
+import Player from '@/components/player/player';
+import Seeker from '@/components/player/Seeker';
 
 const breadcrumbs = [
   { href: '/', label: 'Home' },
@@ -24,7 +25,7 @@ export default function Dashboard() {
             The amzing deadpool and wolverine.
             How I felt about a cash grab film made for adults.
           </h1>
-          <h3 className="font-bold text-sm text-zinc-500">Episode 503 . 12 April 2024</h3>
+          <h3 className="font-bold text-sm text-light">Episode 503 . 12 April 2024</h3>
         </div>
 
         <div className="grid py-6 w-full h-full grid-cols-3 grid-rows-3 gap-8">
@@ -38,28 +39,14 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           <Card className="col-span-2 row-span-2">
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
             <CardContent>
-              <p>Card Content</p>
+              <Player />
             </CardContent>
-            <CardFooter>
-              <p>Card Footer</p>
-            </CardFooter>
           </Card>
           <Card className="col-span-3">
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
             <CardContent>
-              <p>Card Content</p>
+              <Seeker />
             </CardContent>
-            <CardFooter>
-              <p>Card Footer</p>
-            </CardFooter>
           </Card>
         </div>
       </div>

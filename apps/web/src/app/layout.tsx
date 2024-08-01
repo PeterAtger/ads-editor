@@ -26,7 +26,7 @@ export default async function RootLayout({
     <html lang="en" className={`${manrope.className}`}>
       <body>
         <SessionProvider session={session}>
-          <main className="text-slate-900 dark:text-white bg-zinc-100 dark:bg-zinc-800">
+          <main className="text-slate-900 dark:text-white bg-background dark:bg-zinc-800">
             <Navbar />
             <div className="flex min-h-screen pt-16 w-full">
               {children}

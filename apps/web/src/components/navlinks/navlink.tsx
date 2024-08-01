@@ -9,7 +9,7 @@ export default function NavLink({ href, children }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-zinc-500 hover:text-zinc-800 font-bold transition-all"
+      className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-light hover:text-zinc-800 font-bold transition-all"
     >
       {children}
     </Link>

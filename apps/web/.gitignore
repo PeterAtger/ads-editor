@@ -1,0 +1,14 @@
+
+# next-video
+videos/*
+!videos/*.json
+!videos/*.js
+!videos/*.ts
+public/_next-video
+
+# next-video
+src/videos/*
+!src/videos/*.json
+!src/videos/*.js
+!src/videos/*.ts
+public/_next-video

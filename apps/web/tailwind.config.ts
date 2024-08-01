@@ -8,6 +8,12 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
       },
+      colors: {
+        primary: '#09090B',
+        light: '#71717A',
+        foreground: '#FFF',
+        background: '#F5F4F5',
+      },
     },
   },
   plugins: [],

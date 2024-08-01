@@ -39,7 +39,7 @@ export default function NavLinks() {
           Create a new episode
         </Button>
         <Select>
-          <SelectTrigger className="w-full h-12 bg-zinc-50">
+          <SelectTrigger className="w-full h-12 bg-foreground">
             <SelectValue placeholder="Select Video" />
           </SelectTrigger>
           <SelectContent>
@@ -103,7 +103,7 @@ export default function NavLinks() {
       {/* Bootom */}
       <div className="mt-auto">
         <div className="flex items-center space-x-2">
-          <Label htmlFor="demo-mode" className="flex flex-row items-center px-3 gap-3 py-2 text-zinc-500 hover:text-zinc-800 font-bold transition-all ">
+          <Label htmlFor="demo-mode" className="flex flex-row items-center px-3 gap-3 py-2 text-light hover:text-zinc-800 font-bold transition-all ">
             <CirclePlay className="h-4 w-4" />
             Demo Mode
           </Label>
