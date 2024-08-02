@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
       <Separator />
-      <footer className="flex items-center px-6 justify-between w-full h-16 bg-foreground border">
+      <footer className="flex items-center px-6 justify-between w-full h-16 bg-background border">
         <p className="text-sm text-light font-bold">Video first podcasts</p>
         <Link
           href="/"

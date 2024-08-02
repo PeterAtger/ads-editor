@@ -8,6 +8,12 @@ import { withNextVideo } from 'next-video/process';
 await import('./src/env.mjs');
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    remotePatterns: [
+      { hostname: 'dvox5jdzkt9hx.cloudfront.net' },
+    ],
+  },
+};
 
 export default withNextVideo(config);

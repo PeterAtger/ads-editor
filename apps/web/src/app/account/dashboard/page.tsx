@@ -1,13 +1,5 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@repo/ui';
 import { Breadcrumbs } from '@/components/breadcrumbs';
-import Player from '@/components/player/player';
-import Seeker from '@/components/player/Seeker';
+import { DashboardLayout } from '@/components/dashboard';
 
 const breadcrumbs = [
   { href: '/', label: 'Home' },
@@ -28,27 +20,7 @@ export default function Dashboard() {
           <h3 className="font-bold text-sm text-light">Episode 503 . 12 April 2024</h3>
         </div>
 
-        <div className="grid py-6 w-full h-full grid-cols-3 grid-rows-3 gap-8">
-          <Card className="row-span-2">
-            <CardHeader className="flex flex-row justify-between items-center">
-              <CardTitle>Ad markers</CardTitle>
-              <CardDescription>3 markers</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-          </Card>
-          <Card className="col-span-2 row-span-2">
-            <CardContent>
-              <Player />
-            </CardContent>
-          </Card>
-          <Card className="col-span-3">
-            <CardContent>
-              <Seeker />
-            </CardContent>
-          </Card>
-        </div>
+        <DashboardLayout />
       </div>
     </div>
   );

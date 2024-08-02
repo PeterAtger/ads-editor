@@ -1,10 +1,21 @@
 import {
-  useRef, useState,
+  RefObject,
 } from 'react';
 
-export default function usePlayer() {
-  const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+export default function usePlayer(videoRef: RefObject<HTMLVideoElement>) {
+  const handleFullScreen = () => {
+    if (!videoRef || !videoRef.current) {
+      return;
+    }
+
+    const { current: video } = videoRef;
+
+    if (!document.fullscreenElement) {
+      video.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
 
   const handlePlay = () => {
     if (!videoRef || !videoRef.current) {
@@ -15,11 +26,38 @@ export default function usePlayer() {
 
     if (video.paused) {
       video.play();
-      setPlaying(true);
     } else {
       video.pause();
-      setPlaying(false);
     }
+  };
+
+  const handleSeekTo = (value: number) => {
+    if (!videoRef || !videoRef.current) {
+      return;
+    }
+
+    const { current: video } = videoRef;
+    handlePlay();
+    video.currentTime = value;
+    handlePlay();
+  };
+
+  const pauseVideo = () => {
+    if (!videoRef || !videoRef.current) {
+      return;
+    }
+
+    const { current: video } = videoRef;
+    video.pause();
+  };
+
+  const playVdeo = () => {
+    if (!videoRef || !videoRef.current) {
+      return;
+    }
+
+    const { current: video } = videoRef;
+    video.play();
   };
 
   const handleJumpFwd = () => {
@@ -47,8 +85,6 @@ export default function usePlayer() {
 
     const { current: video } = videoRef;
     video.currentTime = 0;
-    video.pause();
-    setPlaying(false);
   };
 
   const handleJumpEnd = () => {
@@ -58,17 +94,27 @@ export default function usePlayer() {
 
     const { current: video } = videoRef;
     video.currentTime = video.duration - 1;
-    video.pause();
-    setPlaying(false);
+  };
+
+  const getIsPlaying = () => {
+    if (!videoRef || !videoRef.current) {
+      return false;
+    }
+
+    const { current: video } = videoRef;
+    return !video.paused;
   };
 
   return {
-    playing,
-    videoRef,
+    pauseVideo,
+    playVdeo,
     handlePlay,
     handleJumpFwd,
+    handleSeekTo,
     handleJumpBack,
     handleJumpStart,
     handleJumpEnd,
+    handleFullScreen,
+    getIsPlaying,
   };
 }

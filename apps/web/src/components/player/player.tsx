@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 'use client';
 
 import {
@@ -6,29 +9,60 @@ import {
   Button,
 } from '@repo/ui';
 import {
-  ArrowLeftToLineIcon, ArrowRightToLine, FastForward, History, Pause, Play,
+  ArrowLeftToLineIcon,
+  ArrowRightToLine,
+  FastForward,
+  History,
+  LoaderCircle,
+  Pause,
+  Play,
   Rewind,
 } from 'lucide-react';
-import Video from 'next-video';
+import VideoPlayer from 'next-video/player';
+import { useState } from 'react';
 import usePlayer from './usePlayer';
 
-export default function Player() {
+type PlayerProps = {
+  videoRef: React.RefObject<HTMLVideoElement>;
+  setCurrTime: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export default function Player({ videoRef, setCurrTime }: PlayerProps) {
   const {
-    playing,
     handlePlay,
-    videoRef,
+    handleFullScreen,
     handleJumpBack,
     handleJumpFwd,
     handleJumpEnd,
     handleJumpStart,
-  } = usePlayer();
+  } = usePlayer(videoRef);
+
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-lg overflow-hidden">
-        <Video
-          src="https://stream.mux.com/sxY31L6Opl02RWPpm3Gro9XTe7fRHBjs92x93kiB1vpc.m3u8"
+      <div
+        onClick={handlePlay}
+        onDoubleClick={handleFullScreen}
+        className="rounded-lg cursor-pointer relative overflow-hidden"
+      >
+        {loading
+        && (
+        <div id="loading-overlay" className="absolute z-50 bg-black/35 text-white h-full w-full flex justify-center items-center ">
+          <LoaderCircle size={24} className="animate-spin" />
+        </div>
+        )}
+        <VideoPlayer
+          className="z-0"
+          src="https://storage.googleapis.com/muxdemofiles/mux.mp4"
+          poster="https://image.mux.com/jxEf6XiJs6JY017pSzpv8Hd6tTbdAOecHTq4FiFAn564/thumbnail.webp"
           controls={false}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onWaiting={() => setLoading(true)}
+          onCanPlay={() => setLoading(false)}
+          onTimeUpdate={() => setCurrTime(videoRef.current?.currentTime ?? 0)}
           ref={videoRef}
         />
       </div>
@@ -50,7 +84,7 @@ export default function Player() {
               <History size={24} />
               <p className="text-light">10s</p>
             </Button>
-            <Button variant="ghost" className="gap-1 items-centeryy">
+            <Button onClick={handleJumpBack} variant="ghost" className="gap-1 items-centeryy">
               <Rewind size={24} className="fill-primary" />
             </Button>
 
@@ -62,7 +96,7 @@ export default function Player() {
             </Button>
 
             {/* Next */}
-            <Button variant="ghost" className="gap-1 items-centeryy">
+            <Button onClick={handleJumpFwd} variant="ghost" className="gap-1 items-centeryy">
               <FastForward size={24} className="fill-primary" />
             </Button>
             <Button onClick={handleJumpFwd} variant="ghost" className="gap-1 items-centeryy">

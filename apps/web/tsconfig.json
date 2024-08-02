@@ -20,10 +20,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.jsx",
     ".next/types/**/*.ts",
     "lib/**/**/*.ts",
     "lib/**/**/*.jsx",
-    "src/env.js"
+    "src/env.js",
   ],
   "exclude": [
     "node_modules"
