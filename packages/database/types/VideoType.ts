@@ -1,6 +1,12 @@
-import { InferSelectModel } from 'drizzle-orm';
-import { videos } from '../connection/pg/schema';
+export type MetaDataType = {
+  title: string;
+  description: string;
+};
 
-export type VideoType = InferSelectModel<typeof videos>;
+export const ViedoStatus = {
+  UPLOADING: 'uploading',
+  PROCESSING: 'processing',
+  READY: 'ready',
+} as const;
 
-export type MetaDataType = VideoType['meta'];
+export type VideoStatusType = typeof ViedoStatus[keyof typeof ViedoStatus];

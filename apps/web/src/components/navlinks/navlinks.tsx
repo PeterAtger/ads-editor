@@ -26,6 +26,7 @@ import {
   CirclePlay,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import BatmanImage from '@/assets/batman.jpg';
 import NavLink from './navlink';
 import ViewsChart from '../viewsChart';
@@ -35,9 +36,11 @@ export default function NavLinks() {
     <nav className="flex flex-col w-full overflow-scroll sm:overflow-hidden items-start h-full gap-2 px-2 text-sm font-medium lg:px-4">
       {/* Actions */}
       <div className="action flex flex-col w-full gap-2">
-        <Button className="w-full px-3 py-2">
-          Create a new episode
-        </Button>
+        <Link href="/account/upload" className="w-full">
+          <Button className="w-full px-3 py-2">
+            Create a new episode
+          </Button>
+        </Link>
         <Select>
           <SelectTrigger className="w-full h-12 bg-foreground">
             <SelectValue placeholder="Select Video" />
@@ -62,7 +65,7 @@ export default function NavLinks() {
       <Separator />
       {/* Navigation */}
       <div className="navigation ">
-        <NavLink href="/">
+        <NavLink href="/account/dashboard">
           <Home className="h-4 w-4" />
           Dashboard
         </NavLink>

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.2",
+    "@mux/mux-node": "^8.8.0",
+    "@mux/mux-uploader-react": "^1.0.1",
     "@reduxjs/toolkit": "^2.2.7",
     "@repo/database": "*",
     "@repo/ui": "*",

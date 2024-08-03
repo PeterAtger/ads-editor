@@ -1,28 +1,44 @@
 import { logger } from '@repo/utils/loggers';
 import { VideoResource } from '../../connection';
-import { MetaDataType, VideoType } from '../../types/VideoType';
+import { MetaDataType, VideoStatusType } from '../../types/VideoType';
+import { VideosDbType } from '../../connection/pg/schema';
+import { AdsConfigType } from '../../types/AdsTypes';
 
 export default class VideoModel {
-  id: number;
+  id?: number;
 
   url: string;
 
   user:string;
 
-  meta: MetaDataType;
+  uploadId: string;
+
+  streamId: string;
+
+  status: VideoStatusType | null;
+
+  meta: MetaDataType | null;
+
+  ads: AdsConfigType[] | null;
 
   created: Date;
 
   resource : VideoResource;
 
-  constructor(video: Partial<VideoType> = {}) {
+  constructor(video: Partial<VideosDbType> = {}) {
     const {
-      id, url, user, meta, created,
+      id, url, user,
+      meta, created, ads,
+      uploadId, status, streamId,
     } = video;
-    this.id = id || 0;
+    this.id = id;
     this.url = url || '';
+    this.uploadId = uploadId || '';
+    this.streamId = streamId || '';
+    this.status = status || null;
     this.user = user || '';
     this.meta = meta || null;
+    this.ads = ads || null;
     this.created = created || new Date();
     this.resource = new VideoResource();
   }
@@ -35,6 +51,30 @@ export default class VideoModel {
 
   setMetaData(value: MetaDataType) {
     this.meta = value;
+
+    return this;
+  }
+
+  setAds(value: AdsConfigType[]) {
+    this.ads = value;
+
+    return this;
+  }
+
+  setUploadId(value: string) {
+    this.uploadId = value;
+
+    return this;
+  }
+
+  setStreamId(value: string) {
+    this.streamId = value;
+
+    return this;
+  }
+
+  setStatus(value: VideoStatusType) {
+    this.status = value;
 
     return this;
   }
@@ -52,23 +92,21 @@ export default class VideoModel {
   }
 
   async save() {
-    const {
-      id, url, user, meta,
-    } = this;
+    const { user } = this;
 
-    if (!id || !url || !user) {
-      logger.error('Missing required fields');
-
+    if (!user) {
       return false;
     }
 
-    return this.resource.addVideo({
-      id,
-      url,
-      user,
-      meta,
-      created: new Date(),
-    });
+    if (this.id) {
+      // Typescript is not convinced
+      return this.resource.updateVideo({
+        ...this,
+        id: this.id,
+      });
+    }
+
+    return this.resource.addVideo(this);
   }
 
   async getUserVideos(userId: string): Promise<false | VideoModel[]> {
@@ -94,10 +132,32 @@ export default class VideoModel {
 
     Object.assign(this, videoData);
 
-    return this;
+    return true;
+  }
+
+  async loadVideoByUploadId(uploadId: string) {
+    const videoData = await this.resource.getVideoByUploadId(uploadId);
+
+    if (!videoData) {
+      logger.info('Could not find video');
+
+      return false;
+    }
+
+    Object.assign(this, videoData);
+
+    return true;
   }
 
   async getVideosCount(userId: string) {
     return this.resource.getVideosCount(userId);
+  }
+
+  async deleteVideo() {
+    if (!this.id) {
+      return false;
+    }
+
+    return this.resource.deleteVideo(this.id);
   }
 }
