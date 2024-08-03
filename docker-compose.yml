@@ -2,6 +2,9 @@ services:
   postgres:
     image: "postgres:latest"
     container_name: "pod_postgres"
+    profiles:
+      - dev
+      - prod
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -13,8 +16,48 @@ services:
     networks:
       - app_network
 
+  wavemaster-dev:
+    profiles:
+      - dev
+    build:
+      context: .
+      dockerfile: ./apps/wavemaster/Dockerfile.dev
+    container_name: "wavemaster-dev"
+    volumes:
+      - ./apps/wavemaster:/app/apps/wavemaster
+      - modules:/app/node_modules
+    ports:
+      - "8000:8000"
+    networks:
+      - app_network
+
+  wavemaster-prod:
+    profiles:
+      - prod
+    build:
+      context: ./apps/wavemaster
+      dockerfile: Dockerfile
+    container_name: "wavemaster-prod"
+
+  redis:
+    profiles:
+      - dev
+      - prod
+    image: redis/redis-stack:latest
+    ports:
+        - "6379:6379"
+        - "8001:8001"
+
+    container_name: "redis"
+    volumes:
+        - redis_data:/data
+    networks:
+      - app_network
+
 volumes:
+  redis_data:
   postgres_data:
+  modules:
 
 networks:
   app_network:

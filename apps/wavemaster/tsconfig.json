@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "moduleResolution": "Node10",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "outDir": "dist",
+    "jsx": "react",
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "nodenext",
+      "resolveJsonModule": true,
+      "moduleResolution": "Node",
+    },
+    "files": true,
+    "require": [
+      "dotenv/config"
+    ],
+  },
+  "include": [
+    "**/*.ts",
+    "tests/**/*.ts",
+    "webpack.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

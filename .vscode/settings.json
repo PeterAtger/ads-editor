@@ -1,7 +1,9 @@
 {
     "eslint.workingDirectories": [
         "apps/web",
+        "apps/wavemaster",
         "packages/logger",
+        "packages/queue",
         "packages/utils",
         "packages/ui",
         "packages/database"

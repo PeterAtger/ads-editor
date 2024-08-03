@@ -4,10 +4,15 @@
   "scripts": {
     "build": "turbo build",
     "build:web": "turbo build --filter ae-web",
+    "build:master": "turbo build --filter ae-wavemaster",
     "dev": "turbo dev",
+    "dev:master": "turbo dev --filter ae-wavemaster",
+    "dev:web": "turbo dev --filter ae-web",
     "lint": "turbo lint",
     "start": "turbo start",
-    "test": "turbo test"
+    "test": "turbo test",
+    "docker-start:dev": "docker compose --profile=dev up -d",
+    "docker-stop:dev": "docker compose --profile=dev down"
   },
   "devDependencies": {
     "turbo": "^2.0.6",

@@ -25,6 +25,7 @@
     "react-redux": "^9.1.2",
     "recharts": "^2.12.7",
     "tailwindcss-animate": "^1.0.7",
+    "waveform-data": "^4.5.0",
     "zod": "^3.23.3"
   },
   "devDependencies": {

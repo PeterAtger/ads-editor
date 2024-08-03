@@ -5,16 +5,23 @@ import {
   CardFooter,
   Button,
 } from '@repo/ui';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Plus, Wand } from 'lucide-react';
 import Player from '../player/player';
 import Seeker from '../player/Seeker';
+import onGetAudioPeaks from '@/server/actions/onGetAudioPeaks';
 
 export default function DashboardLayout() {
   // Prop drilling, yes buuut I would rather prop drill than
   // keep these in redux since I really don't think any other component should access them
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currTime, setCurrTime] = useState(0);
+
+  useEffect(() => {
+    const audioContext = new AudioContext();
+    console.log(audioContext);
+    onGetAudioPeaks();
+  }, []);
 
   return (
     <div className="grid py-6 w-full h-full grid-cols-3 gap-8">
