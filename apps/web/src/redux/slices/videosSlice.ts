@@ -41,7 +41,7 @@ export const videosSlice = createSlice({
         state.changed = false;
       }
     },
-
+    updateVideos: (state) => ({ ...state, originalVideos: state.videos, changed: false }),
   },
 });
 
@@ -52,6 +52,7 @@ export const {
   setSelectedVideo,
   clearSelectedVideo,
   setTitle,
+  updateVideos,
 } = videosSlice.actions;
 
 export default videosSlice.reducer;

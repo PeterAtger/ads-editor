@@ -5,7 +5,7 @@ import {
 } from '@repo/ui';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import Batman from '@/assets/batman.jpg';
+import VideoCam from '@/assets/video-cam.png';
 import { setSelectedVideo } from '@/redux/slices/videosSlice';
 
 export default function VideoSelector() {
@@ -23,7 +23,7 @@ export default function VideoSelector() {
       <div className="flex flex-row items-center gap-2">
         <Image
           alt={video.title ?? 'Video Thumbnail'}
-          src={video.thumbnail ?? Batman.src}
+          src={video.thumbnail ?? VideoCam.src}
           quality={100}
           height={32}
           width={32}

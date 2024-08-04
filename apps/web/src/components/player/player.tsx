@@ -35,10 +35,19 @@ export default function Player({ videoRef, setCurrTime }: PlayerProps) {
     handleJumpFwd,
     handleJumpEnd,
     handleJumpStart,
+    currVideoData,
   } = usePlayer(videoRef);
 
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  if (!currVideoData) {
+    return null;
+  }
+
+  const { url } = currVideoData;
+
+  console.log({ currVideoData });
 
   return (
     <div className="flex flex-col gap-4">
@@ -55,8 +64,7 @@ export default function Player({ videoRef, setCurrTime }: PlayerProps) {
         )}
         <VideoPlayer
           className="z-0"
-          src="https://storage.googleapis.com/muxdemofiles/mux.mp4"
-          poster="https://image.mux.com/jxEf6XiJs6JY017pSzpv8Hd6tTbdAOecHTq4FiFAn564/thumbnail.webp"
+          src={url ?? 'https://storage.googleapis.com/muxdemofiles/mux.mp4'}
           controls={false}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}

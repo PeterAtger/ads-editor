@@ -1,17 +1,29 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '@repo/ui';
 import { Check, Pen } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setTitle } from '@/redux/slices/videosSlice';
+import useVideoMetaEditor from './useVideoMetaEditor';
 
 export default function VideoMetaEditor() {
-  const userVideos = useAppSelector((state) => state.userVideos.videos);
-  const selectedVideo = useAppSelector((state) => state.userVideos.selectedVideo);
-  const changed = useAppSelector((state) => state.userVideos.changed);
-  const [editMode, setEditMode] = useState(false);
-  const dispatch = useAppDispatch();
+  const {
+    userVideos,
+    selectedVideo,
+    changed,
+    onSubmit,
+    editMode,
+    setEditMode,
+    dispatch,
+  } = useVideoMetaEditor();
+
+  const onSubmitSideEffect = () => {
+    const formData = new FormData();
+    if (!selectedVideo) return;
+
+    const currVideo = userVideos[selectedVideo];
+    formData.set('video', JSON.stringify(currVideo));
+    onSubmit(formData);
+  };
 
   const renderMessage = (message: string) => (
     <div className="w-full h-full p-6 border-2 rounded-md border-dashed flex flex-col justify-center items-center">
@@ -77,7 +89,14 @@ export default function VideoMetaEditor() {
         <div className="flex flex-row gap-2 md:max-w-screen-md sm:max-w-screen-md">
           {editMode ? renderEditableText() : renderTitle()}
         </div>
-        <Button className=" bottom-12 right-12 shadow-lg" disabled={!changed}>Save</Button>
+        <Button
+          type="submit"
+          onClick={onSubmitSideEffect}
+          className=" bottom-12 right-12 shadow-lg"
+          disabled={!changed}
+        >
+          Save
+        </Button>
       </div>
       <h3 className="font-bold text-sm text-light">{new Date(videoData.createdAt).toDateString()}</h3>
     </div>

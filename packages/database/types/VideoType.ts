@@ -1,7 +1,7 @@
 export type MetaDataType = {
-  title: string;
-  description: string;
-  thumbnail: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
 };
 
 export const ViedoStatus = {

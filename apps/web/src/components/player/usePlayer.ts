@@ -1,8 +1,16 @@
 import {
   RefObject,
 } from 'react';
+import { useAppSelector } from '@/redux/hooks';
+import { VideoReduxType } from '@/types/Videos';
 
 export default function usePlayer(videoRef: RefObject<HTMLVideoElement>) {
+  const userVideos = useAppSelector((state) => state.userVideos.videos);
+  const selectedVideo = useAppSelector((state) => state.userVideos.selectedVideo);
+  const currVideoData: VideoReduxType[number] | null = selectedVideo
+    ? userVideos[selectedVideo]
+    : null;
+
   const handleFullScreen = () => {
     if (!videoRef || !videoRef.current) {
       return;
@@ -116,5 +124,6 @@ export default function usePlayer(videoRef: RefObject<HTMLVideoElement>) {
     handleJumpEnd,
     handleFullScreen,
     getIsPlaying,
+    currVideoData,
   };
 }

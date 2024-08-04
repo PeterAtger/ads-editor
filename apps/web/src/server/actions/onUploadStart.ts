@@ -1,6 +1,7 @@
 'use server';
 
 import { VideoModel } from '@repo/database';
+import { ViedoStatus } from '@repo/database/types/VideoType';
 import { FormResultType } from '@/types/FormResult';
 import { auth } from '@/server/auth';
 
@@ -32,7 +33,7 @@ export default async (prevState: FormResultType, formData: FormData): Promise<Fo
     };
   }
 
-  const video = new VideoModel({ uploadId, user: userId });
+  const video = new VideoModel({ uploadId, user: userId, status: ViedoStatus.UPLOADING });
   const saved = await video.save();
 
   if (!saved) {

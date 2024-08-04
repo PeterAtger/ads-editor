@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign Up | Snip Snap',
+  title: 'Sign Up | Vidpod',
   description: 'Sign in to create code snippets',
 };
 
