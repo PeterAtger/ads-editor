@@ -26,7 +26,7 @@ export default function Navbar({ loggedIn }: NavbarProps) {
   );
 
   return (
-    <header className="fixed z-50 top-0 flex h-16 items-center justify-between w-full gap-4 border-b bg-background px-8 md:px-4">
+    <header className="fixed z-[150] top-0 flex h-16 items-center justify-between w-full gap-4 border-b bg-background px-8 md:px-4">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         {renderLogo()}
       </nav>

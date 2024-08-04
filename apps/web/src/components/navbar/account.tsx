@@ -54,7 +54,7 @@ export default function Account() {
           <span className="sr-only">Toggle user menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent className="z-[200]" align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem><Link href="/account/dashboard">Dashboard</Link></DropdownMenuItem>
