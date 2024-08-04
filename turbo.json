@@ -12,7 +12,8 @@
         "AUTH_SECRET",
         "MUX_TOKEN_ID",
         "MUX_TOKEN_SECRET",
-        "POSTGRES_URL"
+        "POSTGRES_URL",
+        "SKIP_LOG_FILE"
       ],
       "outputs": [
         "dist/**",
