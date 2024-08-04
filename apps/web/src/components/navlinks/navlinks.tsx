@@ -1,10 +1,5 @@
 import {
   Button,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   Separator,
   Carousel,
   CarouselContent,
@@ -25,11 +20,10 @@ import {
   CircleHelp,
   CirclePlay,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import BatmanImage from '@/assets/batman.jpg';
 import NavLink from './navlink';
 import ViewsChart from '../viewsChart';
+import { VideoSelector } from '../videoSelector';
 
 export default function NavLinks() {
   return (
@@ -41,26 +35,7 @@ export default function NavLinks() {
             Create a new episode
           </Button>
         </Link>
-        <Select>
-          <SelectTrigger className="w-full h-12 bg-foreground">
-            <SelectValue placeholder="Select Video" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="batman">
-              <div className="flex flex-row items-center gap-2">
-                <Image
-                  alt="Batman"
-                  src={BatmanImage.src}
-                  quality={100}
-                  height={32}
-                  width={32}
-                  className="rounded-md"
-                />
-                <span>That Batman video</span>
-              </div>
-            </SelectItem>
-          </SelectContent>
-        </Select>
+        <VideoSelector />
       </div>
       <Separator />
       {/* Navigation */}

@@ -9,12 +9,18 @@ import { useRef, useState } from 'react';
 import { Plus, Wand } from 'lucide-react';
 import Player from '../player/player';
 import Seeker from '../player/Seeker';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function DashboardLayout() {
   // Prop drilling, yes buuut I would rather prop drill than
   // keep these in redux since I really don't think any other component should access them
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currTime, setCurrTime] = useState(0);
+  const selectedVideo = useAppSelector((state) => state.userVideos.selectedVideo);
+
+  if (!selectedVideo) {
+    return null;
+  }
 
   return (
     <div className="grid py-6 w-full h-full grid-cols-3 gap-8">

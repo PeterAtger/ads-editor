@@ -29,7 +29,7 @@ export default async function RootLayout({
         <ReduxProvider>
           <SessionProvider session={session}>
             <main className="text-slate-900 dark:text-white bg-background dark:bg-zinc-800">
-              <Navbar />
+              <Navbar loggedIn={!!session} />
               <div className="flex min-h-screen pt-16 w-full">
                 {children}
               </div>
