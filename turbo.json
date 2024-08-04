@@ -5,6 +5,15 @@
       "dependsOn": [
         "^build"
       ],
+      "env": [
+        "NEXTAUTH_URL",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET",
+        "AUTH_SECRET",
+        "MUX_TOKEN_ID",
+        "MUX_TOKEN_SECRET",
+        "POSTGRES_URL"
+      ],
       "outputs": [
         "dist/**",
         ".next/**",
